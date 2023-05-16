@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Email
+{% endblock %}
+
+{% block main %}
+    <div class="container" >
+        <div class="text-start">
+        <div class="header">
+          <h5 class="title">{{ email.sender }}</h5>
+          <p class="fw-light">{{ email.timestamp}}</p>
+          <p>To: <span class="fw-light" id="recipient">{{ email.recipient }}</span></p>
+        </div>
+        <div>
+          <p>{{ email.body }}</p>
+        </div>
+        <div class="footer">
+          <form action="reply" method="post">
+            <input type="hidden" name="emailId" value="{{ email.id }}">
+            <button type="submit" class="btn btn-primary">Reply</button>
+          </form>
+          <button onclick="history.back()" class="btn btn-secondary">Go Back</button>
+        </div>
+        </div>
+    </div>
+{% endblock %}

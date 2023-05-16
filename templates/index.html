@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Emails
+{% endblock %}
+
+{% block main %}
+    <div class="search-container">
+        <head>
+            <script crossorigin="anonymous" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script crossorigin="anonymous" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+            <link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet">
+
+          <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+          </script>
+          </head>
+          <body>
+    </div>
+
+    <div class="section">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Subject</th>
+                    <th>Date</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through the database entries to display them in this table -->
+                {% for email in emails %}
+                <tr>
+                    <td><strong> {{ email.sender }} </strong></td>
+                    <td> {{ email.recipient }} </td>
+                    <td> {{ email.subject }} </td>
+                    <td> {{ email.timestamp }} </td>
+                    <td><form action="email" method="post">
+                            <input type="hidden" name="emailId" value="{{ email.id }}">
+                            <button type="submit" class="btn btn-light">View email</button>
+                        </form>
+                    </td>
+                    <td><form action="delete" method="post">
+                        <input type="hidden" name="emailId" value="{{ email.id }}">
+                        <button type="submit" class="btn btn-light">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

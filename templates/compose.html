@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Compose
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <form action="/compose" method="post">
+    <div class="row">
+        <div class="col-25">
+            <label for="from">From:</label>
+        </div>
+        <div class="col-75">
+            <input type="email" autocomplete="off" autofocus class="form-control mx-auto w-auto" id="sender" name="sender" value="{{ sender }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            <label for="recipient">To:</label>
+        </div>
+        <div class="col-75">
+            <input type="email" autocomplete="off" autofocus class="form-control mx-auto w-auto" id="recipient" name="recipient" placeholder="Recipient">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            <label for="subject">Subject</label>
+        </div>
+        <div class="col-75">
+            <input type="text" autocomplete="off" autofocus class="form-control mx-auto w-auto" id="subject" name="subject" placeholder="Subject">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            <label for="body">Message</label>
+        </div>
+        <div class="col-75">
+            <textarea id="body" name="body" placeholder="Write something.." style="height:200px"></textarea>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <input type="submit" value="Send">
+    </div>
+    </form>
+</div>
+{% endblock %}
